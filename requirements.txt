@@ -1,0 +1,7 @@
+opencv-python
+opencv-contrib-python
+torch
+torchvision
+torch-summary
+streamlit
+streamlit_option_menu
