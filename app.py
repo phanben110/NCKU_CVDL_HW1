@@ -3,11 +3,12 @@ from streamlit_option_menu import option_menu
 import os           
 import cv2 
 import numpy as np
-from src.camera_calibration import camera_calibration
-from src.sift import sift
-from src.cifar10_vgg19 import cifar10_vgg19
-from src.stereo_disparity_map import stereo_disparity_map
-from src.augmented_reality import augmented_reality  
+from src.q1_camera_calibration import camera_calibration
+from src.q2_augmented_reality import augmented_reality  
+from src.q3_stereo_disparity_map import stereo_disparity_map
+from src.q4_sift import sift
+from src.q5_cifar10_vgg19 import cifar10_vgg19
+
 # Create an option menu for the main menu in the sidebar
 st.set_page_config(page_title="CV & DL Homework1", page_icon="image/logo_csie2.png")
 # st.image("image/title_search.png")
