@@ -151,11 +151,23 @@ def draw2(img, corners, imgpts):
     img = cv.resize(img, (650, 650))  # Resize image
     return img
 
-def draw_char(img, char_list:list):
+
+def convert_tuple_to_int(input_tuple):
+    # Check if the input tuple has exactly two elements
+    if len(input_tuple) != 2:
+        raise ValueError("Input tuple must contain exactly two elements")
+
+    # Convert each element of the input tuple to an integer
+    output_tuple = (int(input_tuple[0]), int(input_tuple[1]))
+
+    return output_tuple
+
+def draw_char(img, char_list:list, color=(0,0,255)):
     draw_image = img.copy()
     for line in char_list:
         line = line.reshape(2,2)
-        draw_image = cv.line(draw_image, tuple(line[0]), tuple(line[1]), (0,255,0), 10, cv.LINE_AA)
+        # print(tuple(line[0]), tuple(line[1])) 
+        draw_image = cv.line(draw_image, convert_tuple_to_int(tuple(line[0])), convert_tuple_to_int(tuple(line[1])), color, 15, cv.LINE_AA)
     return draw_image    
 
 def disparity(imgL, imgR):
