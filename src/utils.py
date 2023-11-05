@@ -214,35 +214,17 @@ def process_ouput(disparity):
 #         cv.imshow(win, cur_img)
 #     cv.setMouseCallback(win, onmouse) 
 #
-def map_disparity(imgL, imgR, disparity):
-    hL, wL = imgL.shape[:2]
-    merge_image = np.concatenate((imgL, imgR), axis=1)
-    cur_img = merge_image.copy()
+# def map_disparity(imgL, imgR, disparity):
+#     hL, wL = imgL.shape[:2]
 
-    st.image(merge_image, channels="BGR")
+#     left_image_coords = streamlit_image_coordinates(imgL)
+#     if left_image_coords is not None: 
+#         imgR_show = cv2.circle(imgR.copy(), left_image_coords , radius=20, color=(0, 255, 0), thickness=-1)
+#         st.image(imgR_show, channels="BGR")
+#         print(left_image_coords)
 
-    left_image_coords = streamlit_image_coordinates(imgL, key="left_image")
 
-    if left_image_coords:
-        x, y = left_image_coords["x"], left_image_coords["y"]
-        
-        cur_x, cur_y = x, y
-        if cur_x < 0:
-            cur_x = 0
-        elif cur_x >= wL:
-            cur_x = wL - 1
-        if cur_y < 0:
-            cur_y = 0
-        elif cur_y >= hL:
-            cur_y = hL - 1
 
-        delta_pos = disparity[cur_y, cur_x]
-        st.write(f"Disparity value at ({cur_x}, {cur_y}) on the left image: {delta_pos}")
-
-        if delta_pos > 0:
-            x_right = cur_x - delta_pos + wL
-            cur_img = cv2.circle(cur_img, (x_right, cur_y), radius=20, color=(0, 255, 0), thickness=-1)
-
-        st.image(cur_img, channels="BGR")
+      
 
 
