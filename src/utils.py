@@ -2,6 +2,9 @@ import cv2 as cv
 import glob
 import os
 import numpy as np
+import streamlit as st
+import cv2
+from streamlit_image_coordinates import streamlit_image_coordinates
 
 
 def readImages(pathFolder:str, extension = "*.bmp"):
@@ -181,34 +184,65 @@ def process_ouput(disparity):
     dtype=cv.CV_8UC1)
     return cv8uc
 
-def map_disparity(imgL, imgR, disparity, win):
-    hL, wL = imgL.shape[:2]
-    # hR, wR = imgR.shape[:2]
-    print("Shape image: {}, {}".format(wL, hL))
-    merge_image = concat_image(imgL, imgR)
-    # imag0 = merge_image.copy()
-    cur_img = merge_image.copy()
-    def onmouse(event, x, y, flags, param):
-        # print("initial")
-        nonlocal cur_img
-        if flags & cv.EVENT_FLAG_LBUTTON:
-            cur_img = merge_image.copy()
-            cur_x, cur_y = x, y
-            if cur_x < 0:
-                cur_x = 0
-            elif cur_x >= wL:
-                cur_x = wL-1
-            if cur_y < 0:
-                cur_y = 0
-            elif cur_y >= hL:
-                cur_y = hL-1
-            delta_pos = disparity[cur_y,cur_x]
-            print("disparity value at ({},{}): {}".format(cur_x, cur_y, delta_pos))
-            if delta_pos > 0:
-                x_right = cur_x -delta_pos + wL
-                cur_img = cv.circle(cur_img, (x_right,cur_y), radius=20, color=(0, 255, 0), thickness=-1)
+# def map_disparity(imgL, imgR, disparity, win):
+#     hL, wL = imgL.shape[:2]
+#     # hR, wR = imgR.shape[:2]
+#     print("Shape image: {}, {}".format(wL, hL))
+#     merge_image = concat_image(imgL, imgR)
+#     # imag0 = merge_image.copy()
+#     cur_img = merge_image.copy()
+#     def onmouse(event, x, y, flags, param):
+#         # print("initial")
+#         nonlocal cur_img
+#         if flags & cv.EVENT_FLAG_LBUTTON:
+#             cur_img = merge_image.copy()
+#             cur_x, cur_y = x, y
+#             if cur_x < 0:
+#                 cur_x = 0
+#             elif cur_x >= wL:
+#                 cur_x = wL-1
+#             if cur_y < 0:
+#                 cur_y = 0
+#             elif cur_y >= hL:
+#                 cur_y = hL-1
+#             delta_pos = disparity[cur_y,cur_x]
+#             print("disparity value at ({},{}): {}".format(cur_x, cur_y, delta_pos))
+#             if delta_pos > 0:
+#                 x_right = cur_x -delta_pos + wL
+#                 cur_img = cv.circle(cur_img, (x_right,cur_y), radius=20, color=(0, 255, 0), thickness=-1)
             
-        cv.imshow(win, cur_img)
-    cv.setMouseCallback(win, onmouse) 
+#         cv.imshow(win, cur_img)
+#     cv.setMouseCallback(win, onmouse) 
+#
+def map_disparity(imgL, imgR, disparity):
+    hL, wL = imgL.shape[:2]
+    merge_image = np.concatenate((imgL, imgR), axis=1)
+    cur_img = merge_image.copy()
+
+    st.image(merge_image, channels="BGR")
+
+    left_image_coords = streamlit_image_coordinates(imgL, key="left_image")
+
+    if left_image_coords:
+        x, y = left_image_coords["x"], left_image_coords["y"]
+        
+        cur_x, cur_y = x, y
+        if cur_x < 0:
+            cur_x = 0
+        elif cur_x >= wL:
+            cur_x = wL - 1
+        if cur_y < 0:
+            cur_y = 0
+        elif cur_y >= hL:
+            cur_y = hL - 1
+
+        delta_pos = disparity[cur_y, cur_x]
+        st.write(f"Disparity value at ({cur_x}, {cur_y}) on the left image: {delta_pos}")
+
+        if delta_pos > 0:
+            x_right = cur_x - delta_pos + wL
+            cur_img = cv2.circle(cur_img, (x_right, cur_y), radius=20, color=(0, 255, 0), thickness=-1)
+
+        st.image(cur_img, channels="BGR")
 
 

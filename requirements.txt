@@ -6,3 +6,4 @@ torch-summary
 streamlit
 streamlit_option_menu
 matplotlib
+streamlit_image_coordinates
