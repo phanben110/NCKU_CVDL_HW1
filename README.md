@@ -1,58 +1,46 @@
-# Project Name
+# Computer Vision and Deep Learning - Homework 1
+## Phan Ben (潘班) - Student ID: P76127051
+### Contact: phanben110@gmail.com
 
-Brief description of your project.
+Welcome to Homework 1 of the Computer Vision and Deep Learning course. This assignment covers various topics related to computer vision, and you will find instructions on how to run the code for each section below.
 
-## Table of Contents
+## Assignment Topics
 
-- [Project Name](#project-name)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [Algorithms](#algorithms)
-  - [Displaying Retrieval Results](#displaying-retrieval-results)
-  - [How to Run](#how-to-run)
-  - [Conclusion](#conclusion)
+1. **Camera Calibration**
+   - This section focuses on camera calibration techniques. You will find code and instructions in the corresponding directory.
 
-## Features
+2. **Augmented Reality**
+   - Explore augmented reality concepts in this part of the assignment. Detailed code and guidance are available in the respective folder.
 
-- **Download PubMed**: Provides the functionality to download PubMed articles from the PubMed Central (PMC) database and save them locally for future analysis.
+3. **Stereo Disparity Map**
+   - Understand how to create a disparity map in stereo vision. Code and explanations are provided in the dedicated directory.
 
-- **Frequency Analyst**: Offers a tool for analyzing the frequency of keywords and generating insights from the data. Additionally, it provides the ability to visualize the Zipf Distribution computation (frequency spectrum for terms).
+4. **SIFT (Scale-Invariant Feature Transform)**
+   - Learn about SIFT, a powerful computer vision algorithm. Code and details are available in the SIFT directory.
 
-- **Edit Distance**: Includes a feature to calculate the edit distance between keywords and terms within the articles. This is valuable for identifying approximate matches and relevant results.
+5. **Training a CIFAR10 Classifier Using VGG19 with BN**
+   - In this section, you will train a CIFAR10 image classifier using a VGG19 model with Batch Normalization. Look for the code and guidelines in the respective folder.
 
-## Algorithms
+## How to Run the Code
 
-- **Streamlit**: The primary framework for building the user interface and integrating different features.
+To run the code for any of the sections, please follow the steps below:
 
-- **Bio.Entrez**: Integrated to interact with PubMed's database for article retrieval.
+**Step 1: Install the Environment**
+   - Open your terminal or command prompt.
+   - Navigate to the directory where the homework code is located.
+   - Execute the following command to install the required dependencies using the provided `requirements.txt` file:
+     ```bash
+     pip install -r requirements.txt
+     ```
 
-- **Matplotlib and Seaborn**: Utilized for creating interactive visualizations, including Zipf Distribution plots.
+**Step 2: Run the Application**
+   - Once the environment is set up, you can run the application associated with each section. Replace `app.py` with the specific file name for the section you want to run. For example, if you want to run the Camera Calibration section, use:
+     ```bash
+     streamlit run app.py
+     ```
+   - Follow the specific instructions within each section to interact with the code and complete the assignments.
 
-- **NLTK (Natural Language Toolkit)**: Employed for text processing, including stopword removal and stemming.
+## Demo Project
+[Watch our demo project on YouTube](https://www.youtube.com/watch?v=DCcANXbOfrI)
 
-- **Porter Stemmer**: Used for text normalization.
-
-- **Programming-Based Edit Distance Computation**: Used to compute the edit distance between keywords and terms within the articles. This is essential for identifying approximate matches and relevant results.
-
-## Displaying Retrieval Results
-
-The retrieval results can be displayed in a format that indicates the location(s) and/or partial matches of the search terms within the articles. This feature provides users with quick access to relevant content and helps them pinpoint specific information within the retrieved articles.
-
-## How to Run
-
-To run this project locally, you can follow these steps:
-
-1. Install the required Python libraries by running `pip install -r requirements.txt`.
-
-2. Run the application using Streamlit with the command `streamlit run app.py`
-
-3. Access the web application by opening a web browser and navigating to the provided URL.
-
-## Video Demo
-https://youtu.be/k1HVlkoP-tw
-
-## Conclusion
-
-The "Project Name" project offers a powerful and user-friendly tool for analyzing and managing PubMed articles. With advanced features such as Zipf Distribution computation, Porter's algorithm, programming-based Edit distance computation, and intuitive interfaces, this application is an ideal choice for researchers and professionals in the biomedical field. Whether you need to download PubMed articles, conduct keyword frequency analysis, visualize Zipf Distribution, or retrieve results with pinpointed information, this application has you covered.
-# IIR_Bag_Of_Words
-# NCKU_CV_-_DL
+If you encounter any issues or have questions, feel free to contact me at phanben110@gmail.com.
