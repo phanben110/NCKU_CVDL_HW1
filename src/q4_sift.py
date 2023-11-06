@@ -37,11 +37,11 @@ def sift():
 
     
     if len(image2.shape) == 1 and len(image1.shape) == 1: 
-        st.warning("Please upload image 1 and 2.")    
+        st.warning("Please upload image 1 and 2.", icon="⚠️")    
     elif len(image1.shape) == 1:
-        st.warning("Please upload image 1.")
+        st.warning("Please upload image 1.",  icon="⚠️")
     elif len(image2.shape) == 1:
-        st.warning("Please upload image 2.")
+        st.warning("Please upload image 2.",  icon="⚠️")
  
     else:
         images = []

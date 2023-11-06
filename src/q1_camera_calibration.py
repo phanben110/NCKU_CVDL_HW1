@@ -43,7 +43,7 @@ def camera_calibration():
                 st.sidebar.error(f"Failed to read image: {uploaded_file.name}")
 
     if len(images) == 0:
-        st.warning("Please upload BMP images.")
+        st.warning("Please upload BMP images.", icon="⚠️")
     else:
         if st.button("1.1 Find Corner"):
             global corner_executed
@@ -63,7 +63,7 @@ def camera_calibration():
 
         if st.button("1.2 Find Intrinsic"):
             if not corner_executed:
-                st.warning("Please run '1.1 Find Corner' first.")
+                st.warning("Please run '1.1 Find Corner' first.", icon="⚠️")
             else:
                 h, w = images[0].shape[:2]
                 ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(objpoints, imgpoints, (w, h), None, None)
@@ -76,9 +76,9 @@ def camera_calibration():
 
         if st.button("1.3 Find Extrinsic"):
             if not corner_executed:
-                st.warning("Please run '1.1 Find Corner' first.")
+                st.warning("Please run '1.1 Find Corner' first.", icon="⚠️")
             elif number_image < 1 or number_image > len(images):
-                st.warning("Input error: Please input a valid image number.")
+                st.warning("Input error: Please input a valid image number.",  icon="⚠️")
             else:
                 rvec = rvecs[number_image - 1]
                 tvec = tvecs[number_image - 1]
@@ -96,7 +96,7 @@ def camera_calibration():
                 st.write(dist[-1])
                 print("Distortion: \n", dist[-1])
             else:
-                st.warning("Distortion coefficients have not been calculated yet.")
+                st.warning("Distortion coefficients have not been calculated yet.", icon="⚠️")
 
         if st.button("1.5 Show Result"):
             if len(images) > 0 and dist is not None:

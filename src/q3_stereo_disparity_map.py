@@ -24,7 +24,7 @@ def stereo_disparity_map():
             imgLeft = cv2.cvtColor(imgLeft, cv2.COLOR_BGR2RGB)
             st.sidebar.image(imgLeft, caption="Uploaded Image Left", use_column_width=True)
         else:
-            st.sidebar.error(f"Failed to read image: {uploaded_file_left.name}")
+            st.sidebar.error(f"Failed to read image: {uploaded_file_left.name}", icon="⚠️")
 
     uploaded_file_right = st.sidebar.file_uploader("Load Image Right", type=["png"], accept_multiple_files=False)
     if uploaded_file_right is not None:
@@ -35,14 +35,14 @@ def stereo_disparity_map():
             imgRight = cv2.cvtColor(imgRight, cv2.COLOR_BGR2RGB)
             st.sidebar.image(imgRight, caption="Uploaded Image Right", use_column_width=True)
         else:
-            st.sidebar.error(f"Failed to read image: {uploaded_file_right.name}")
+            st.sidebar.error(f"Failed to read image: {uploaded_file_right.name}", icon="⚠️")
     
     if len(imgLeft.shape) == 1 and len(imgRight.shape) == 1: 
-        st.warning("Please upload image Left and Right.")    
+        st.warning("Please upload image Left and Right.", icon="⚠️")    
     elif len(imgLeft.shape) == 1:
-        st.warning("Please upload image Left.")
+        st.warning("Please upload image Left.",  icon="⚠️")
     elif len(imgRight.shape) == 1:
-        st.warning("Please upload image Right.")
+        st.warning("Please upload image Right.", icon="⚠️")
  
     else:
         grayL = cv2.cvtColor(imgLeft, cv2.COLOR_BGR2GRAY)
